@@ -6,7 +6,7 @@ const { chromium } = require("playwright");
   });
   const context = await browser.newContext();
   const page = await context.newPage();
-  await page.goto("https://z.hr.dmerej.info/");
+  await page.goto("https://f.hr.dmerej.info/");
 
   // Add employee
 
@@ -44,7 +44,7 @@ const { chromium } = require("playwright");
 
   // ZIP erroné
 
-  await page.getByRole('link', { name: 'Home' }).click();
+  await page.getByRole("link", { name: "Home" }).click();
   await page.getByRole("link", { name: "Add new employee" }).click();
   await page.getByRole("group", { name: "Basic Info" }).click();
   await page.getByPlaceholder("Name").click();
@@ -70,7 +70,7 @@ const { chromium } = require("playwright");
 
   // Update address (KO)
 
-  await page.getByRole('link', { name: 'Home' }).click();
+  await page.getByRole("link", { name: "Home" }).click();
   await page.getByRole("link", { name: "List Employees" }).click();
   await page.locator("tr:nth-child(105) > td:nth-child(4) > .btn").click();
   await page.getByRole("link", { name: "Update address" }).click();
@@ -81,7 +81,7 @@ const { chromium } = require("playwright");
 
   // Create Team
 
-  await page.getByRole('link', { name: 'Home' }).click();
+  await page.getByRole("link", { name: "Home" }).click();
   await page.getByRole("link", { name: "Create new team" }).click();
   await page.getByPlaceholder("Name").click();
   await page.getByPlaceholder("Name").fill("The winners");
@@ -89,7 +89,7 @@ const { chromium } = require("playwright");
 
   // Create Team without name
 
-  await page.getByRole('link', { name: 'Home' }).click();
+  await page.getByRole("link", { name: "Home" }).click();
   await page.getByRole("link", { name: "Create new team" }).click();
   await page.getByRole("button", { name: "Add" }).click();
 
@@ -102,46 +102,58 @@ const { chromium } = require("playwright");
 
   // Adding employees to team
 
-  await page.getByRole('link', { name: 'Home' }).click();
-  await page.getByRole('link', { name: 'List Employees' }).click();
-  await page.locator('tr:nth-child(105) > td:nth-child(4) > .btn').click();
-  await page.getByRole('link', { name: 'Add to team' }).click();
-  await page.getByRole('combobox', { name: 'Team' }).selectOption('14');
-  await page.getByRole('button', { name: 'Add' }).click();
-  await page.getByRole('link', { name: 'Home' }).click();
-  await page.getByRole('link', { name: 'List teams' }).click();
-  await page.getByRole('row', { name: 'The winners View members Delete' }).getByRole('link', { name: 'View members' }).click();
+  await page.getByRole("link", { name: "Home" }).click();
+  await page.getByRole("link", { name: "List Employees" }).click();
+  await page.locator("tr:nth-child(105) > td:nth-child(4) > .btn").click();
+  await page.getByRole("link", { name: "Add to team" }).click();
+  await page.getByRole("combobox", { name: "Team" }).selectOption("14");
+  await page.getByRole("button", { name: "Add" }).click();
+  await page.getByRole("link", { name: "Home" }).click();
+  await page.getByRole("link", { name: "List teams" }).click();
+  await page
+    .getByRole("row", { name: "The winners View members Delete" })
+    .getByRole("link", { name: "View members" })
+    .click();
 
   // Unassign Team from emloyee
 
   // Delete Team containing employees
-  await page.getByRole('link', { name: 'Home' }).click();
-  await page.getByRole('listitem').filter({ hasText: 'Add new employee' }).click();
-  await page.getByRole('link', { name: 'Add new employee' }).click();
-  await page.getByPlaceholder('Name').click();
-  await page.getByPlaceholder('Name').fill('Test');
-  await page.getByPlaceholder('Email').click();
-  await page.getByPlaceholder('Email').fill('test@test.com');
-  await page.locator('#id_address_line1').click();
-  await page.locator('#id_address_line1').fill('11 random street');
-  await page.getByRole('group', { name: 'Address' }).click();
-  await page.getByPlaceholder('City').click();
-  await page.getByPlaceholder('City').fill('Paris');
-  await page.getByPlaceholder('Zip code').click();
-  await page.getByPlaceholder('Zip code').fill('0000');
-  await page.getByPlaceholder('Hiring date').fill('2000-11-11');
-  await page.getByPlaceholder('Job title').click();
-  await page.getByPlaceholder('Job title').fill('CEO');
-  await page.getByRole('button', { name: 'Add' }).click();
-  await page.getByRole('row', { name: 'Test test@test.com no Edit Delete' }).getByRole('link', { name: 'Edit' }).click();
-  await page.getByRole('link', { name: 'Add to team' }).click();
-  await page.getByRole('combobox', { name: 'Team' }).selectOption('15');
-  await page.getByRole('button', { name: 'Add' }).click();
-  await page.getByRole('link', { name: 'Home' }).click();
-  await page.getByRole('link', { name: 'List teams' }).click();
-  await page.getByRole('row', { name: 'Test delete View members Delete' }).getByRole('link', { name: 'Delete' }).click();
-  await page.getByRole('button', { name: 'Proceed' }).click();
-  
+  await page.getByRole("link", { name: "Home" }).click();
+  await page
+    .getByRole("listitem")
+    .filter({ hasText: "Add new employee" })
+    .click();
+  await page.getByRole("link", { name: "Add new employee" }).click();
+  await page.getByPlaceholder("Name").click();
+  await page.getByPlaceholder("Name").fill("Test");
+  await page.getByPlaceholder("Email").click();
+  await page.getByPlaceholder("Email").fill("test@test.com");
+  await page.locator("#id_address_line1").click();
+  await page.locator("#id_address_line1").fill("11 random street");
+  await page.getByRole("group", { name: "Address" }).click();
+  await page.getByPlaceholder("City").click();
+  await page.getByPlaceholder("City").fill("Paris");
+  await page.getByPlaceholder("Zip code").click();
+  await page.getByPlaceholder("Zip code").fill("0000");
+  await page.getByPlaceholder("Hiring date").fill("2000-11-11");
+  await page.getByPlaceholder("Job title").click();
+  await page.getByPlaceholder("Job title").fill("CEO");
+  await page.getByRole("button", { name: "Add" }).click();
+  await page
+    .getByRole("row", { name: "Test test@test.com no Edit Delete" })
+    .getByRole("link", { name: "Edit" })
+    .click();
+  await page.getByRole("link", { name: "Add to team" }).click();
+  await page.getByRole("combobox", { name: "Team" }).selectOption("15");
+  await page.getByRole("button", { name: "Add" }).click();
+  await page.getByRole("link", { name: "Home" }).click();
+  await page.getByRole("link", { name: "List teams" }).click();
+  await page
+    .getByRole("row", { name: "Test delete View members Delete" })
+    .getByRole("link", { name: "Delete" })
+    .click();
+  await page.getByRole("button", { name: "Proceed" }).click();
+
   //Promote employee to manager
   // Demote manager to employee
 
