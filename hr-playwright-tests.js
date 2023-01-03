@@ -176,11 +176,46 @@ const { chromium } = require("playwright");
   await page.locator("tr:last-child > td:nth-child(5) > .btn").click();
   await page.getByRole('button', { name: 'Proceed' }).click();
 
-  //Promote employee to manager
+  //Add employe -------
+  await page.goto("https://f.hr.dmerej.info/");
+
+  await page.getByRole("link", { name: "Add new employee" }).click();
+  await page.getByPlaceholder("Name").click();
+  await page.getByPlaceholder("Name").fill("Paul Test");
+  await page.getByPlaceholder("Email").click();
+  await page.getByPlaceholder("Email").fill("paul@test.com");
+  await page.getByPlaceholder("Hiring date").fill("2020-11-01");
+  await page.getByPlaceholder("Job title").click();
+  await page.getByPlaceholder("Job title").fill("Test soft");
+  await page.locator("#id_address_line1").fill("21 Random street");
+  await page.getByPlaceholder("City").fill("Paris");
+  await page.getByPlaceholder("Zip code").fill("75001");
+  await page.getByRole("button", { name: "Add" }).click();
+  //-------------------
+
+  // Promote employee to manager
+  await page.getByRole("row", { name: "Paul Test paul@test.com no Edit Delete" })
+            .getByRole("link", { name: "Edit" })
+            .click();
+  await page.getByRole("link", { name: "Promote as manager"}).click();
+  await page.getByRole("button", { name: "Proceed"}).click();
+  //should be => Paul Test paul@test.com yes Edit Delete
+
   // Demote manager to employee
+  await page.getByRole("row", { name: "Paul Test paul@test.com yes Edit Delete" })
+            .getByRole("link", { name: "Edit" })
+            .click();
+  await page.getByRole("link", { name: "Promote as manager"}).click();
+  await page.getByRole("button", { name: "Proceed"}).click();
+  //should be => Paul Test paul@test.com no Edit Delete
+
+
 
   // Delete employee
-
+  await page.getByRole("row", { name: "Paul Test paul@test.com yes Edit Delete" })
+            .getByRole("link", { name: "Delete" })
+            .click();
+  await page.getByRole("button", { name: "Proceed"}).click();
   // ---------------------
   await context.close();
   await browser.close();
