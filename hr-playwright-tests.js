@@ -42,6 +42,12 @@ const { chromium } = require("playwright");
   await page.getByPlaceholder("Job title").fill("CEO");
   await page.getByRole("button", { name: "Add" }).click();
 
+  await page.getByRole("link", { name: "Home" }).click();
+  await page.getByRole('link', { name: 'List Employees' }).click();
+  await page.locator("tr:last-child > td:nth-child(5) > .btn").click();
+  await page.getByRole('button', { name: 'Proceed' }).click();
+
+
   // ZIP erroné
 
   await page.getByRole("link", { name: "Home" }).click();
@@ -68,11 +74,16 @@ const { chromium } = require("playwright");
   await page.getByPlaceholder("Job title").fill("CEO");
   await page.getByRole("button", { name: "Add" }).click();
 
+  await page.getByRole("link", { name: "Home" }).click();
+  await page.getByRole('link', { name: 'List Employees' }).click();
+  await page.locator("tr:last-child > td:nth-child(5) > .btn").click();
+  await page.getByRole('button', { name: 'Proceed' }).click();
+  
   // Update address (KO)
 
   await page.getByRole("link", { name: "Home" }).click();
   await page.getByRole("link", { name: "List Employees" }).click();
-  await page.locator("tr:nth-child(105) > td:nth-child(4) > .btn").click();
+  await page.locator("tr:nth-child(1) > td:nth-child(4) > .btn").click();
   await page.getByRole("link", { name: "Update address" }).click();
   await page.locator("#id_address_line1").click();
   await page.locator("#id_address_line1").fill("11 New random street");
@@ -101,12 +112,18 @@ const { chromium } = require("playwright");
   await page.getByRole("button", { name: "Add" }).click();
 
   // Adding employees to team
-
-  await page.getByRole("link", { name: "Home" }).click();
+  await page.goto("https://f.hr.dmerej.info/");
+  await page.getByRole('link', { name: 'Home' }).click();
+  await page.getByRole('link', { name: 'Create new team' }).click();
+  await page.getByPlaceholder('Name').click();
+  await page.getByPlaceholder('Name').fill('Team');
+  await page.getByRole('button', { name: 'Add' }).click();
+  await page.getByRole('link', { name: 'Home' }).click();
   await page.getByRole("link", { name: "List Employees" }).click();
-  await page.locator("tr:nth-child(105) > td:nth-child(4) > .btn").click();
+  await page.locator("tr:nth-child(1) > td:nth-child(4) > .btn").click();
   await page.getByRole("link", { name: "Add to team" }).click();
-  await page.getByRole("combobox", { name: "Team" }).selectOption("14");
+
+  await page.getByRole("combobox", { name: "Team" }).selectOption("Team team");
   await page.getByRole("button", { name: "Add" }).click();
   await page.getByRole("link", { name: "Home" }).click();
   await page.getByRole("link", { name: "List teams" }).click();
@@ -144,15 +161,20 @@ const { chromium } = require("playwright");
     .getByRole("link", { name: "Edit" })
     .click();
   await page.getByRole("link", { name: "Add to team" }).click();
-  await page.getByRole("combobox", { name: "Team" }).selectOption("15");
+  await page.getByRole("combobox", { name: "Team" }).selectOption("Team team");
   await page.getByRole("button", { name: "Add" }).click();
   await page.getByRole("link", { name: "Home" }).click();
   await page.getByRole("link", { name: "List teams" }).click();
   await page
-    .getByRole("row", { name: "Test delete View members Delete" })
+    .getByRole("row", { name: "Team View members Delete" })
     .getByRole("link", { name: "Delete" })
     .click();
   await page.getByRole("button", { name: "Proceed" }).click();
+
+  await page.goto("https://f.hr.dmerej.info/");
+  await page.getByRole('link', { name: 'List Employees' }).click();
+  await page.locator("tr:last-child > td:nth-child(5) > .btn").click();
+  await page.getByRole('button', { name: 'Proceed' }).click();
 
   //Promote employee to manager
   // Demote manager to employee
