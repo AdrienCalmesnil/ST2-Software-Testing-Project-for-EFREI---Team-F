@@ -1,0 +1,22 @@
+{
+  "name": "st2-software-testing-project-for-efrei---team-f",
+  "version": "1.0.0",
+  "description": "\"# ST2-Software-Testing-Project-for-EFREI---Team-F\"",
+  "main": "hr-playwright-tests.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdrienCalmesnil/ST2-Software-Testing-Project-for-EFREI---Team-F.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdrienCalmesnil/ST2-Software-Testing-Project-for-EFREI---Team-F/issues"
+  },
+  "homepage": "https://github.com/AdrienCalmesnil/ST2-Software-Testing-Project-for-EFREI---Team-F#readme",
+  "dependencies": {
+    "playwright": "^1.29.1"
+  }
+}
